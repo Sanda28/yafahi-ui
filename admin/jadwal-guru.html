@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jadwal Guru - Yafahi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Styles -->
+   <!-- Tambahan CSS Responsif -->
+<link href="../../assets/css/style.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.1.4/css/sb-admin-2.min.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+  <div id="wrapper">
+
+    <!-- Sidebar Admin -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="sidebar">
+            <!-- Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
+                <div class="sidebar-brand-icon">
+                    <img src="../../assets/images/logo.png" alt="Yafahi Logo" style="width: 40px; height: 40px; object-fit: contain;">
+                </div>
+                <div class="sidebar-brand-text mx-3">Yafahi</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Menu Utama -->
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="riwayat.html">
+                    <i class="fas fa-fw fa-calendar-check"></i>
+                    <span>Riwayat Absensi</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="generate-qr.html">
+                    <i class="fas fa-fw fa-qrcode"></i>
+                    <span>Generate QR</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="persetujuan-izin.html">
+                    <i class="fas fa-fw fa-check-circle"></i>
+                    <span>Persetujuan Izin</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="log-aktivitas.html">
+                    <i class="fas fa-fw fa-history"></i>
+                    <span>Log Aktivitas</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="manajemen-user.html">
+                    <i class="fas fa-fw fa-users-cog"></i>
+                    <span>Manajemen User</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="hari-libur.html">
+                    <i class="fas fa-fw fa-calendar-times"></i>
+                    <span>Manajemen Hari Libur</span>
+                </a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="jadwal-guru.html">
+                    <i class="fas fa-fw fa-calendar-alt"></i>
+                    <span>Jadwal Guru</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="laporan-bulanan.html">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>Laporan Bulanan</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Logout -->
+            <li class="nav-item">
+                <a class="nav-link" href="../login.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
+        </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+
+        <!-- Navbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow">
+                    <div class="container-fluid d-flex justify-content-between">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3"><i class="fa fa-bars"></i></button>
+                        <h6 class="m-0 font-weight-bold text-primary">Jadwal Guru</h6>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin Yafahi</span>
+                                    <img class="img-profile rounded-circle" src="https://ui-avatars.com/api/?name=Admin+Yafahi" width="32">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow">
+                                    <li><a class="dropdown-item" href="profil.html"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i> Profil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><form method="POST" action="../login.html"><button class="dropdown-item"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i> Logout</button></form></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+        <!-- Main Content -->
+        <div class="container">
+          <!-- Flash Message -->
+          <div class="alert alert-success">Berhasil menambahkan jadwal</div>
+
+          <!-- Tombol -->
+          <div class="d-flex justify-content-between mb-4">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTahunAjaran">Tambah Tahun Ajaran</button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahJadwal">Tambah Jadwal Guru</button>
+          </div>
+
+          <!-- Tahun Ajaran -->
+          <div class="card mb-4">
+            <div class="card-header">Tahun Ajaran</div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nama</th>
+                    <th>Periode</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2024/2025</td>
+                    <td>Juli 2024 - Juni 2025</td>
+                    <td><span class="badge bg-success">Aktif</span></td>
+                    <td>
+                      <form onsubmit="return confirm('Yakin hapus?')">
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2023/2024</td>
+                    <td>Juli 2023 - Juni 2024</td>
+                    <td>
+                      <button class="btn btn-sm btn-success">Aktifkan</button>
+                    </td>
+                    <td>
+                      <form onsubmit="return confirm('Yakin hapus?')">
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Filter Tahun Ajaran -->
+          <form class="mb-3">
+            <label for="tahun">Tahun Ajaran:</label>
+            <select id="tahun" class="form-select w-auto d-inline-block">
+              <option selected>2024/2025</option>
+              <option>2023/2024</option>
+            </select>
+          </form>
+
+          <!-- Jadwal Guru -->
+          <div class="card">
+            <div class="card-header">Daftar Jadwal Guru</div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Guru</th>
+                    <th>Tahun Ajaran</th>
+                    <th>Hari</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Bu Siti</td>
+                    <td>2024/2025</td>
+                    <td>Senin, Rabu</td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                      <button class="btn btn-sm btn-danger" onclick="return confirm('Hapus jadwal?')">Hapus</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Pak Budi</td>
+                    <td>2024/2025</td>
+                    <td>Selasa, Jumat</td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                      <button class="btn btn-sm btn-danger" onclick="return confirm('Hapus jadwal?')">Hapus</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white py-3 mt-4 shadow">
+          <div class="container text-center">
+            <span>Yafahi &copy; 2025</span>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Tambah Tahun Ajaran -->
+  <div class="modal fade" id="modalTahunAjaran" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tambah Tahun Ajaran</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Nama</label>
+            <input type="text" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Mulai</label>
+            <input type="month" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label>Selesai</label>
+            <input type="month" class="form-control" required />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Tambah Jadwal Guru -->
+  <div class="modal fade" id="modalTambahJadwal" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tambah Jadwal Guru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Guru</label>
+            <select class="form-select" required>
+              <option>Bu Siti</option>
+              <option>Pak Budi</option>
+              <option>Bu Lina</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Hari Mengajar</label>
+            <div class="form-check"><input class="form-check-input" type="checkbox" value="Senin"> Senin</div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" value="Selasa"> Selasa</div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" value="Rabu"> Rabu</div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" value="Kamis"> Kamis</div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" value="Jumat"> Jumat</div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" value="Sabtu"> Sabtu</div>
+          </div>
+          <input type="hidden" value="1">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success">Simpan Jadwal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script toggle sidebar -->
+<script src="../../assets/js/layout.js"></script>
+
+</body>
+</html>
